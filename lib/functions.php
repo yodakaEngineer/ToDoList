@@ -43,6 +43,7 @@ function h($string)
 
 function quote_sql($string)
 {
+    //テーブル名の前後に「`」をつけてる
     $quote_str = '`';
     return $quote_str.str_replace($quote_str, '', $string).$quote_str;
 }

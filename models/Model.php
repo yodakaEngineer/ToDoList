@@ -45,6 +45,7 @@ class Model
             return false;
         }
 
+        //lastInsertIdは最後にINSERTされたデータのidを取得するもの
         return db()->lastInsertId('id');
     }
 
