@@ -6,6 +6,7 @@ class Validate
     {
         $errors = [];
 
+        // keyが対象カラム名
         foreach ($rules as $key => $rule_string) {
             $rule_list = explode('|', $rule_string);
             $value     = array_get($params, $key);
@@ -15,9 +16,12 @@ class Validate
             $error_messages = [];
 
             foreach ($rule_list as $rule) {
+                // 「:」前をルール名、後をパラメータとして分けてる
                 $rule_parts  = explode(':', $rule);
                 $rule_name   = array_shift($rule_parts);
                 $rule_params = $rule_parts;
+
+                // validate以降の文字列でバリデーションするメソッドを指定している
                 $method = 'validate'.camelize(''.$rule_name);
                 if (!static::$method($value, $rule_params)) {
                     $error_messages[$rule_name] = array_get($message_templates, $rule_name, $rule_name.'のエラーが発生しました');

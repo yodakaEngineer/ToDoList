@@ -1,5 +1,6 @@
 <?php
 
+// prepareからすぐにexecuteしてるのですべてStr型にキャストしてバインドして実行してる
 class Model
 {
     protected static $table = 'table';
